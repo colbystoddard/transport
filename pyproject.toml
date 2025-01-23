@@ -1,0 +1,6 @@
+[project]
+name = "transport"
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {file = "VERSION"}
