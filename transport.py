@@ -40,6 +40,8 @@ class Measurement:
                 self._unsorted_mask = self.mask
 
             if self.mask is not None:
+                if self.mask.dtype == bool:
+                    self.mask = np.nonzero(self.mask)[0]
                 self.mask = self.mask[np.argsort(independent_variable)]
             else:
                 self.mask = np.argsort(independent_variable)
@@ -259,7 +261,7 @@ class Hall_Measurement:
         return 1e-4/(e*self.hall_coefficient)
 
 #the PPMS RvsT data file has the same variable order as the RvsH 
-RT_measurement = define_measurement(PPMS_RvsH_dict, default_skip_header=3)
+RT_Measurement = define_measurement(PPMS_RvsH_dict, default_skip_header=3)
 
 #The I/V measurement files store the data differently depending on whether 
 #current or voltage is sourced.
